@@ -21,6 +21,7 @@ public class StartActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
+            finish();
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         } else {
@@ -45,9 +46,9 @@ public class StartActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Log.d(TAG, "onActivityResult: added a user");
+                finish();
                 Intent i = new Intent(this, HomeActivity.class);
                 startActivity(i);
-                finish();
             } else {
                 // user is not signed in. Maybe just wait for the user to press
                 // "sign in" again, or show a message
