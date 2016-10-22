@@ -61,7 +61,7 @@
     <!-- White Top color -->
     <item>
         <shape>
-            <solid android:color="@color/white" />
+            <solid android:color="@color/material_blue" />
             <padding
                 android:bottom="4dp"
                 android:left="16dp"
