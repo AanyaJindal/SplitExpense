@@ -8,7 +8,7 @@
             android:title="Dashboard" />
         <item
             android:id="@+id/nav_reports"
-            android:icon="@drawable/ic_description_black_24dp"
+            android:icon="@drawable/ic_show_chart_black_18dp"
             android:title="Reports" />
         <item
             android:id="@+id/nav_transactions"
