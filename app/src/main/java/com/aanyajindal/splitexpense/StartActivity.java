@@ -21,7 +21,7 @@ public class StartActivity extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            Intent i = new Intent(this, WelcomeActivity.class);
+            Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         } else {
             startActivityForResult(
@@ -45,7 +45,7 @@ public class StartActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Log.d(TAG, "onActivityResult: added a user");
-                Intent i = new Intent(this, WelcomeActivity.class);
+                Intent i = new Intent(this, HomeActivity.class);
                 startActivity(i);
                 finish();
             } else {
