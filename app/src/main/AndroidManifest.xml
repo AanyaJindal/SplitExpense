@@ -29,7 +29,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GroupsActivity" />
         <activity android:name=".TransactionsActivity" />
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
     </application>
 
 </manifest>

@@ -98,7 +98,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/iv_email_item"
                 android:layout_toRightOf="@id/iv_email_item"
-                android:text="E=mail"
+                android:text="E-mail"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272" />
 
