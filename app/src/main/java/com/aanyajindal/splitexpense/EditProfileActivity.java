@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.aanyajindal.splitexpense.Models.User;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -28,6 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
     de.hdodenhof.circleimageview.CircleImageView ivCurrentDP;
     Button btnSaveChanges,btnChangeDP;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference mainDatabase,usersList;
     Uri uri;
 
     @Override
@@ -43,9 +51,12 @@ public class EditProfileActivity extends AppCompatActivity {
         btnSaveChanges = (Button) findViewById(R.id.btn_save_changes);
 
         etName.setText(user.getDisplayName());
+        etName.setSelection(etName.getText().length());
         etEmail.setText(user.getEmail());
+        etEmail.setSelection(etEmail.getText().length());
         //TODO:set contact to current value by retrieving from database
         etContact.setText("");
+        etContact.setSelection(etContact.getText().length());
         Glide
                 .with(this)
                 .load(user.getPhotoUrl())
@@ -62,9 +73,31 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        mainDatabase = FirebaseDatabase.getInstance().getReference();
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                User newUser = new User(etName.getText().toString(), etEmail.getText().toString(), etContact.getText().toString(), user.getPhotoUrl().toString());
+                usersList = mainDatabase.child("users");
+                usersList.child(user.getUid()).setValue(newUser);
+
+                UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(newUser.getName())
+                       // .setPhotoUri()
+                        .build();
+                user.updateProfile(userProfileChangeRequest)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+                                    Intent i = new Intent(getApplicationContext(), AccountsActivity.class);
+                                    startActivity(i);
+                                }
+                            }
+                        });
+
+
 
             }
         });

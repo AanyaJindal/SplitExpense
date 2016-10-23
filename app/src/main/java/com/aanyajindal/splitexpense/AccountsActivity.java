@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class AccountsActivity extends AppCompatActivity {
 
+    //TODO: change the way we are displaying text, take from firebase databse
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
