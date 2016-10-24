@@ -63,7 +63,7 @@ public class AddGroupActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
             uri = data.getData();
-            Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+            Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"+uri.hashCode()));
             Crop.of(uri,destination).asSquare().start(this);
             Glide.with(this).load(destination).fitCenter().into(ivGroupPic);
             //uploadPhoto(uri);

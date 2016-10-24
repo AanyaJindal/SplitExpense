@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    private static final String TAG = "EditProfileActivity";
 
     public static final int PICK_IMAGE_REQUEST = 51;
     EditText etName,etEmail,etContact;
@@ -113,7 +115,8 @@ public class EditProfileActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
             uri = data.getData();
-            Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped"));
+            Log.d(TAG, "onActivityResult: "+uri.hashCode());
+            Uri destination = Uri.fromFile(new File(getCacheDir(),"cropped"+uri.hashCode()));
             Crop.of(uri,destination).asSquare().start(this);
             Glide.with(this).load(destination).fitCenter().into(ivCurrentDP);
             //uploadPhoto(uri);
