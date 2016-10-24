@@ -3,8 +3,8 @@
 
     <color name="colorPrimary">#262626</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#ffcc00</color>
-    <color name="colorAccent2">#ffeb99</color>
+    <color name="colorAccent">#e62e00</color>
+    <color name="colorAccent2">#ff5c33</color>
 
 
     <color name="material_green_50">#E8F5E9</color>

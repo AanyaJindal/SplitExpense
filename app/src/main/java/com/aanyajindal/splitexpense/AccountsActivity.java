@@ -30,6 +30,8 @@ public class AccountsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(user.getDisplayName());
 
 
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

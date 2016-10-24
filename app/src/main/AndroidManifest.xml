@@ -11,6 +11,7 @@
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,19 +30,19 @@
             android:parentActivityName=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:parentActivityName=".HomeActivity"
-            android:name=".GroupsActivity" />
+            android:name=".GroupsActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:parentActivityName=".HomeActivity"
-            android:name=".TransactionsActivity" />
+            android:name=".TransactionsActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:parentActivityName=".HomeActivity"
-            android:name=".SettingsActivity" />
+            android:name=".SettingsActivity"
+            android:parentActivityName=".HomeActivity" />
         <activity
-            android:parentActivityName=".AccountsActivity"
-            android:name=".EditProfileActivity" />
-        <activity
-            android:name="com.soundcloud.android.crop.CropImageActivity" />
+            android:name=".EditProfileActivity"
+            android:parentActivityName=".AccountsActivity" />
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity android:name=".AddGroupActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 
 import com.aanyajindal.splitexpense.Models.User;
 import com.bumptech.glide.Glide;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +35,8 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final int PICK_IMAGE_REQUEST = 51;
     EditText etName,etEmail,etContact;
     de.hdodenhof.circleimageview.CircleImageView ivCurrentDP;
-    Button btnSaveChanges,btnChangeDP;
+    Button btnSaveChanges;
+    FloatingActionButton fabChangeDP;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mainDatabase,usersList;
     Uri uri;
@@ -42,12 +45,13 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ivCurrentDP = (CircleImageView) findViewById(R.id.iv_current_dp);
         etName = (EditText) findViewById(R.id.et_name);
         etEmail = (EditText) findViewById(R.id.et_email);
         etContact = (EditText) findViewById(R.id.et_contact);
-        btnChangeDP = (Button) findViewById(R.id.btn_change_dp);
+        fabChangeDP = (FloatingActionButton) findViewById(R.id.fab_changePhoto);
         btnSaveChanges = (Button) findViewById(R.id.btn_save_changes);
 
         etName.setText(user.getDisplayName());
@@ -63,7 +67,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 .fitCenter()
                 .into(ivCurrentDP);
 
-        btnChangeDP.setOnClickListener(new View.OnClickListener() {
+        fabChangeDP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
