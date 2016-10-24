@@ -40,6 +40,7 @@ public class AddGroupActivity extends AppCompatActivity {
         Glide
                 .with(this)
                 .load(R.drawable.ic_group_black_24dp)
+                .placeholder(R.drawable.ic_group_black_24dp)
                 .fitCenter()
                 .into(ivGroupPic);
 

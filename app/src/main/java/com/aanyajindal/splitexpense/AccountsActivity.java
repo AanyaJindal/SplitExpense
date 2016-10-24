@@ -48,7 +48,7 @@ public class AccountsActivity extends AppCompatActivity {
         Glide
                 .with(this)
                 .load(user.getPhotoUrl())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.ic_person_black_24dp)
                 .crossFade()
                 .centerCrop()
                 .into(ivProfilePic);
