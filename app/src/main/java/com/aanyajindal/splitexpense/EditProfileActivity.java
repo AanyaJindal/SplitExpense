@@ -12,17 +12,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.aanyajindal.splitexpense.Models.User;
 import com.bumptech.glide.Glide;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
@@ -40,6 +46,7 @@ public class EditProfileActivity extends AppCompatActivity {
     Button btnSaveChanges;
     FloatingActionButton fabChangeDP;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    StorageReference storageRef;
     DatabaseReference mainDatabase,usersList;
     Uri uri;
 
@@ -80,6 +87,8 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
         mainDatabase = FirebaseDatabase.getInstance().getReference();
+        storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://split-expense-23af6.appspot.com/user-dps/" + user.getUid());
+
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +117,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,11 +125,41 @@ public class EditProfileActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
             uri = data.getData();
+
             Log.d(TAG, "onActivityResult: "+uri.hashCode());
             Uri destination = Uri.fromFile(new File(getCacheDir(),"cropped"+uri.hashCode()));
             Crop.of(uri,destination).asSquare().start(this);
             Glide.with(this).load(destination).fitCenter().into(ivCurrentDP);
-            //uploadPhoto(uri);
+            uploadPhoto(uri);
+
         }
+
+
+    }
+
+    protected void uploadPhoto(Uri uri) {
+
+        Toast.makeText(this, "Uploading...", Toast.LENGTH_SHORT).show();
+
+        storageRef.putFile(uri)
+                .addOnSuccessListener(EditProfileActivity.this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d(TAG, "uploadPhoto:onSuccess:" + taskSnapshot.getMetadata().getReference().getPath());
+
+                        Log.d(TAG, "onSuccess: " + storageRef.getDownloadUrl().toString());
+
+                        Toast.makeText(EditProfileActivity.this, "Image uploaded",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "uploadPhoto:onError", e);
+                        Toast.makeText(EditProfileActivity.this, "Upload failed",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }
