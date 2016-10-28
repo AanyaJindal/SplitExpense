@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aanyajindal.splitexpense">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -42,7 +45,11 @@
             android:name=".EditProfileActivity"
             android:parentActivityName=".AccountsActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".AddGroupActivity"></activity>
+        <activity android:name=".AddGroupActivity" />
+        <activity
+            android:name=".AddIndividualExpense"
+            android:label="@string/title_activity_add_individual_expense"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

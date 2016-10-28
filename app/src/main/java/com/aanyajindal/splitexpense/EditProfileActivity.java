@@ -130,7 +130,7 @@ public class EditProfileActivity extends AppCompatActivity {
             Uri destination = Uri.fromFile(new File(getCacheDir(),"cropped"+uri.hashCode()));
             Crop.of(uri,destination).asSquare().start(this);
             Glide.with(this).load(destination).fitCenter().into(ivCurrentDP);
-            uploadPhoto(uri);
+            uploadPhoto(destination);
 
         }
 
