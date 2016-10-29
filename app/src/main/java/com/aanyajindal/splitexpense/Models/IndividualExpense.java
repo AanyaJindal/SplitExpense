@@ -10,6 +10,8 @@ public class IndividualExpense {
     Float amount;
     String desc;
     String date;
+    String time;
+    String mode;
     String receipt;
     String category;
     String tags;
@@ -17,11 +19,13 @@ public class IndividualExpense {
     public IndividualExpense() {
     }
 
-    public IndividualExpense(String title, Float amount, String desc, String date, String receipt, String category, String tags) {
+    public IndividualExpense(String title, Float amount, String desc, String date, String time, String mode, String receipt, String category, String tags) {
         this.title = title;
         this.amount = amount;
         this.desc = desc;
         this.date = date;
+        this.time = time;
+        this.mode = mode;
         this.receipt = receipt;
         this.category = category;
         this.tags = tags;
@@ -57,6 +61,22 @@ public class IndividualExpense {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
     public String getReceipt() {
