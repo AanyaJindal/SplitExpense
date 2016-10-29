@@ -31,15 +31,8 @@ public class EditGroupActivity extends AppCompatActivity {
         getSupportActionBar().setSubtitle("Created on: "+ "creation time");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_edit_group);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-        ibAddMember.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditDialog();
@@ -65,9 +58,7 @@ public class EditGroupActivity extends AppCompatActivity {
         LayoutInflater li = LayoutInflater.from(this);
         View editDialogView = li.inflate(R.layout.dialog_edit_group, null);
         AlertDialog.Builder editDialog = new AlertDialog.Builder(this);
-        editDialog
-                .setTitle("Edit name and description")
-                .setView(editDialogView);
+        editDialog.setView(editDialogView);
 
         editDialog.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
             @Override

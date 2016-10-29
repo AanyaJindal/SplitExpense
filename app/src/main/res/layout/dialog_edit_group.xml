@@ -1,41 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:textColor="#000000"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:id="@+id/edit_group_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Edit Details"/>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:id="@+id/above_input_field"
+        android:layout_margin="20dp"
+        android:layout_below="@id/edit_group_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:text="Group Name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Group Name" />
 
         <EditText
+            android:ems="12"
             android:id="@+id/ad_et_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_below="@id/above_input_field"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
-            android:text="Description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Description" />
 
         <EditText
+            android:ems="12"
             android:id="@+id/ad_et_description"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>
