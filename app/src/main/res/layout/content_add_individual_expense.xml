@@ -40,9 +40,10 @@
             android:text="Save" />
     </LinearLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:isScrollContainer="false"
         android:layout_above="@id/footer">
 
         <LinearLayout
@@ -163,7 +164,7 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </RelativeLayout>
