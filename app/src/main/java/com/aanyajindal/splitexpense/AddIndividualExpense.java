@@ -88,7 +88,6 @@ public class AddIndividualExpense extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(AddIndividualExpense.this,HomeActivity.class));
             }
         });
     }
