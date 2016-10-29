@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.hannesdorfmann.swipeback.Position;
+import com.hannesdorfmann.swipeback.SwipeBack;
+import com.hannesdorfmann.swipeback.transformer.SlideSwipeBackTransformer;
 
 public class AccountsActivity extends AppCompatActivity {
 
@@ -23,7 +26,12 @@ public class AccountsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accounts);
+        SwipeBack.attach(this, Position.LEFT)
+                .setDrawOverlay(true)
+                .setDividerEnabled(true)
+                .setSwipeBackTransformer(new SlideSwipeBackTransformer())
+                .setContentView(R.layout.activity_accounts)
+                .setSwipeBackView(R.layout.swipeback_default);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,6 +64,15 @@ public class AccountsActivity extends AppCompatActivity {
         tvEmailItem.setText(user.getEmail());
 
 
+
+
         //TODO: display contact number and groups when they are available through the database
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(R.anim.swipeback_stack_to_front,
+                R.anim.swipeback_stack_right_out);
     }
 }

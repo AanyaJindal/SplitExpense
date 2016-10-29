@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.aanyajindal.splitexpense.EditGroupActivity">
+
+    <item
+        android:id="@+id/action_add_member"
+        android:icon="@drawable/ic_person_add_white_24dp"
+        android:orderInCategory="100"
+        android:title="Add Member"
+        app:showAsAction="always" />
+</menu>

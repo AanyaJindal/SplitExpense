@@ -42,7 +42,11 @@
             android:name=".EditProfileActivity"
             android:parentActivityName=".AccountsActivity" />
         <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
-        <activity android:name=".AddGroupActivity"></activity>
+        <activity android:name=".AddGroupActivity" />
+        <activity
+            android:name=".EditGroupActivity"
+            android:label="@string/title_activity_edit_group"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

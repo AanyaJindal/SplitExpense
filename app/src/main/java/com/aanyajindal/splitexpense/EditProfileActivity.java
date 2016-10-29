@@ -41,13 +41,13 @@ public class EditProfileActivity extends AppCompatActivity {
     private static final String TAG = "EditProfileActivity";
 
     public static final int PICK_IMAGE_REQUEST = 51;
-    EditText etName,etEmail,etContact;
+    EditText etName, etEmail, etContact;
     de.hdodenhof.circleimageview.CircleImageView ivCurrentDP;
     Button btnSaveChanges;
     FloatingActionButton fabChangeDP;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     StorageReference storageRef;
-    DatabaseReference mainDatabase,usersList;
+    DatabaseReference mainDatabase, usersList;
     Uri uri;
 
     @Override
@@ -98,20 +98,18 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 UserProfileChangeRequest userProfileChangeRequest = new UserProfileChangeRequest.Builder()
                         .setDisplayName(newUser.getName())
-                       // .setPhotoUri()
+                        // .setPhotoUri()
                         .build();
                 user.updateProfile(userProfileChangeRequest)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful())
-                                {
+                                if (task.isSuccessful()) {
                                     Intent i = new Intent(getApplicationContext(), AccountsActivity.class);
                                     startActivity(i);
                                 }
                             }
                         });
-
 
 
             }
@@ -126,9 +124,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
             uri = data.getData();
 
-            Log.d(TAG, "onActivityResult: "+uri.hashCode());
-            Uri destination = Uri.fromFile(new File(getCacheDir(),"cropped"+uri.hashCode()));
-            Crop.of(uri,destination).asSquare().start(this);
+            Log.d(TAG, "onActivityResult: " + uri.hashCode());
+            Uri destination = Uri.fromFile(new File(getCacheDir(), "cropped" + uri.hashCode()));
+            Crop.of(uri, destination).asSquare().start(this);
             Glide.with(this).load(destination).fitCenter().into(ivCurrentDP);
             uploadPhoto(uri);
 
