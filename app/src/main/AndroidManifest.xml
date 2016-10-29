@@ -50,7 +50,6 @@
             android:name=".AddIndividualExpense"
             android:label="@string/title_activity_add_individual_expense"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".AddGroupActivity" />
         <activity
             android:name=".EditGroupActivity"
             android:label="@string/title_activity_edit_group"
