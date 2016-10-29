@@ -60,9 +60,5 @@
 
     <include layout="@layout/content_add_individual_expense" />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Save" />
+
 </android.support.design.widget.CoordinatorLayout>
