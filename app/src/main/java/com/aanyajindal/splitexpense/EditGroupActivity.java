@@ -49,7 +49,6 @@ public class EditGroupActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        openEditDialog();
         return super.onOptionsItemSelected(item);
     }
 
