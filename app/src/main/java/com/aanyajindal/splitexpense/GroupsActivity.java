@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.aanyajindal.splitexpense.Models.Group;
 import com.aanyajindal.splitexpense.adapters.GroupsAdapter;
+import com.aanyajindal.splitexpense.adapters.ItemClickSupport;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,12 +27,12 @@ public class GroupsActivity extends AppCompatActivity {
 
     private static final String TAG = "GroupsActivity";
     FloatingActionButton fabAddGroup;
-    ArrayList<String> groupIDArrayList = new ArrayList<>();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     GroupsAdapter adapter;
     SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
     RecyclerView rvGroupsList;
     ArrayList<Group> groupsList = new ArrayList<>();
+    ArrayList<String> groupIDArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,15 @@ public class GroupsActivity extends AppCompatActivity {
         rvGroupsList.setLayoutManager(new LinearLayoutManager(this));
 
         getGroupIDs(user);
+
+        ItemClickSupport.addTo(rvGroupsList).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Intent intent = new Intent(GroupsActivity.this,EditGroupActivity.class);
+                intent.putExtra("group-id",groupIDArrayList.get(position));
+                startActivity(intent);
+            }
+        });
 
         fabAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +89,7 @@ public class GroupsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnap : dataSnapshot.getChildren()) {
                     String string = dataSnap.getKey();
-                    Log.d(TAG, "onDataChange: " + string);
+                    groupIDArrayList.add(string);
                     groupsRef.child(string).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot1) {
